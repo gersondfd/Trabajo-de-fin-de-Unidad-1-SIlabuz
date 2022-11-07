@@ -40,7 +40,20 @@ def pokemon_tipo():
     lista_de_pokemon_tipo=[pokemon['pokemon']['name'] for pokemon in data['pokemon']] 
     print(lista_de_pokemon_tipo)
 
-def mostrar_menu():
+def evaluar_menu(a):
+    try:
+    
+        b=int(a)
+        if 1<=b and b<=5:
+            return b
+        else:
+            print("\nError. Por favor, ingrese un numero de la lista.\n")
+            evaluar_menu(mostrar_menu())
+    except ValueError:
+        print("\nError. Por favor, ingrese un numero de la lista.\n")
+        evaluar_menu(mostrar_menu()) 
+
+def mostrar_menu(a):
     a=input('PokeApi\n\nMenú de Opciones\n\n1: Listar pokemons por generación.\n2: Listar pokemons por forma.\n3: Listar pokemons por habilidad.\n4: Listar pokemons por habitat.\n5: Listar pokemons por tipo.\n\nIngrese un número de la lista: ')
-mostrar_menu()
+evaluar_menu(mostrar_menu())
 
