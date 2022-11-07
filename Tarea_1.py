@@ -62,3 +62,39 @@ def leer_archivo():
         print('\nSe cargaron '+str(len(misLibros)-1)+' libros.\n')
     normalizar_lista()
     seleccionar_menu(evaluar_menu(mostrar_menu()))
+def listar_libros():
+    #normalizar_lista()
+    a=1
+    for i in misLibros:
+        if a>(len(misLibros))-1:
+            break
+        else:
+            #print(misLibros[a])
+            c=0
+            for b in misLibros[a]:
+                print(misLibros[0][c],":",b)
+                c+=1
+            a+=1
+            print("")
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def agregar_libro():
+    m=[]
+    print()
+    for i in range(0,6):
+        l=input("Ingrese "+misLibros[0][i]+": ")
+        m.append(l)
+    while True:
+        a=input('¿Desea agregar más autores? (y/n) : ')
+        if a=='y':
+            b=input('Ingrese Autor('+str(len(m)-4)+') : ')
+            m.append(b)
+            continue
+        elif a=='n':
+            break
+        else:
+            print("Error. Ingrese sólo las letras (y) o (n).")
+            continue
+    misLibros.append(m)
+    print('\nSe agregó 1 libro.\n')
+    normalizar_lista()
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
