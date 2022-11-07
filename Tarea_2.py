@@ -1,28 +1,14 @@
-import os
-import requests
 import json
+import requests
 
-os.system("clear")
+url_Pokeapi_Json = 'https://pokeapi.co/api/v2/'
 
-url_pokeapi = 'https://pokeapi.co/api/v2/pokemon/'
-lista_pokemon = ['bulbasaur', 'squirtle', 'charmander', 'abra']
+url_pokemon = url_Pokeapi_Json+"/generation/1/"
 
-def obtener_pokemon(pokemones):
-    response = requests.get(url_pokeapi + pokemones)
+data_response = requests.get(url_pokemon)
 
-    data = response.json()
-    print(f"Nombre: {data['name']}")
-    print(f"Peso: {data['weight']}")
+data = data_response.json()
 
-    lista_habilidades = [habilidad['ability']['name'] for habilidad in data['abilities']]
+lista_de_pokemon_generacion=[pokemon['name'] for pokemon in data['pokemon_species'] ] 
 
-    print(f"Habilidades: {lista_habilidades}")
-
-    dicc_estadistica = {stat['stat']['name']:stat['base_stat'] for stat in data['stats']}
-
-    print(f"Estadisticas: {dicc_estadistica}")
-
-    print("***********" * 2)
-
-for pokemon in lista_pokemon:
-    obtener_pokemon(pokemon)
+print(lista_de_pokemon_generacion)
