@@ -41,4 +41,24 @@ def seleccionar_menu(a):
         guardar_libros()
     else:
         print("No disponible")        
+def normalizar_lista():
+    j=len(misLibros[0])-4
+    for i in range(1,(len(misLibros))):       
+        while len(misLibros[0])<len(misLibros[i]):
+            misLibros[0].append(str('Autor('+str(j)+') '))
+            j+=1
+def leer_archivo():
+    with open('libros.csv', encoding="utf-8") as f:
 
+
+    #    writer=csv.writer(f)
+    #    writer.writerows(myData)
+
+        reader=csv.reader(f)
+        next(reader)
+        for i in reader:
+            #print(i)
+            misLibros.append(i)
+        print('\nSe cargaron '+str(len(misLibros)-1)+' libros.\n')
+    normalizar_lista()
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
