@@ -40,7 +40,7 @@ def seleccionar_menu(a):
     elif a==10:
         guardar_libros()
     else:
-        print("No disponible")        
+        print("No disponible")
 def normalizar_lista():
     j=len(misLibros[0])-4
     for i in range(1,(len(misLibros))):       
@@ -97,6 +97,75 @@ def agregar_libro():
     misLibros.append(m)
     print('\nSe agregó 1 libro.\n')
     normalizar_lista()
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def eliminar_libro():
+    z=1
+    while z<=(len(misLibros))-1:
+        e=input('\n¿Desea eliminar '+misLibros[z][1]+' de la colección de libros? Ingrese (y/n): ')
+        if e=='y':
+            print('\nLibro '+misLibros[z][1]+' eliminado.\n')
+            misLibros.pop(z)
+            z-=1
+        elif e=='n':
+            pass
+        else:
+            print("Error. Ingrese sólo las letras (y) o (n).")
+            z-=1
+        z+=1
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def buscar_isbn_titulo():
+    bit=input("Buscar por:\n\n1. ISBN.\n2. Título.\n\nIngrese un número de la lista: ")
+    if bit=='1':
+        print()
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][3])
+        d=int(input("\nIngrese un número de la lista: "))
+        print()
+        for i in range(0,len(misLibros[d])):
+            print(misLibros[0][i],':',misLibros[d][i])
+        print()
+
+    elif bit=='2':
+        print()
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][1])
+        d=int(input("\nIngrese un número de la lista: "))
+        print()
+        for i in range(0,len(misLibros[d])):
+            print(misLibros[0][i],':',misLibros[d][i])
+        print()
+    else:
+        print("\nIngrese nuevamente.\n")
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def ordenar_titulo():
+    misLibrosO=[]
+    for i in range(1,len(misLibros)):
+        misLibrosO.append(misLibros[i])
+    t=sorted(misLibrosO, key=lambda libro: libro[1])
+    t.insert(0,misLibros[0])
+    for e in range(1,len(t)):
+        print()
+        imprimir_libro(t,e)
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def buscar_autor_editorial_genero():
+    bit=input("Buscar por:\n\n1. Autor(es).\n2. Editorial.\n3. Género.\n\nIngrese un número de la lista: ")
+    if bit=='1':
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][5])
+        d=int(input("\nIngrese un número de la lista: "))
+        imprimir_libro(misLibros,d)
+    elif bit=='2':
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][4])
+        d=int(input("\nIngrese un número de la lista: "))
+        imprimir_libro(misLibros,d)
+    elif bit=='3':
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][2])
+        d=int(input("\nIngrese un número de la lista: "))
+        imprimir_libro(misLibros,d)
+    else:
+        print("Ingrese nuevamente.")
     seleccionar_menu(evaluar_menu(mostrar_menu()))
 def editar_libro():
     print("Editar un libro:\n")
