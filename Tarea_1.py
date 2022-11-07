@@ -98,3 +98,34 @@ def agregar_libro():
     print('\nSe agregó 1 libro.\n')
     normalizar_lista()
     seleccionar_menu(evaluar_menu(mostrar_menu()))
+def editar_libro():
+    print("Editar un libro:\n")
+    for i in range(1,len(misLibros)):
+        print(str(i)+": "+(misLibros[i][1]))
+    enl=int(input("\nIngrese un numero de la lista: "))
+    for i in range(0,6):
+        l=input("Ingrese nuevo "+misLibros[0][i]+": ")
+        misLibros[enl][i]=l
+    print()
+    listar_libros()
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def buscar_autores():
+    nda=input("\nFiltrado de libros por número de autores.\n\nIngrese el número de autores: ")
+    r8=0
+    for i in range(1,len(misLibros)):
+        if len(misLibros[i])==int(nda)+5:
+            print()
+            for j in range(0,len(misLibros[i])):
+                print(misLibros[0][j],':',misLibros[i][j])
+                r8+=1
+            print()
+    if r8==0:
+        print("\nNo hay libro con tal cantidad de autores.\n")
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def guardar_libros():
+    with open('libros.csv','w', encoding="utf-8",newline='') as f:
+        writer=csv.writer(f)
+        for i in range(0,(len(misLibros)),1):
+            writer.writerow(misLibros[i])
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+seleccionar_menu(evaluar_menu(mostrar_menu()))
