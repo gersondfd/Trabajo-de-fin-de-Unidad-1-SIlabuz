@@ -137,3 +137,33 @@ def buscar_isbn_titulo():
     else:
         print("\nIngrese nuevamente.\n")
     seleccionar_menu(evaluar_menu(mostrar_menu()))
+def ordenar_titulo():
+    misLibrosO=[]
+    for i in range(1,len(misLibros)):
+        misLibrosO.append(misLibros[i])
+    t=sorted(misLibrosO, key=lambda libro: libro[1])
+    t.insert(0,misLibros[0])
+    for e in range(1,len(t)):
+        print()
+        imprimir_libro(t,e)
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
+def buscar_autor_editorial_genero():
+    bit=input("Buscar por:\n\n1. Autor(es).\n2. Editorial.\n3. Género.\n\nIngrese un número de la lista: ")
+    if bit=='1':
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][5])
+        d=int(input("\nIngrese un número de la lista: "))
+        imprimir_libro(misLibros,d)
+    elif bit=='2':
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][4])
+        d=int(input("\nIngrese un número de la lista: "))
+        imprimir_libro(misLibros,d)
+    elif bit=='3':
+        for i in range(1,(len(misLibros))):
+            print(i,". ",misLibros[i][2])
+        d=int(input("\nIngrese un número de la lista: "))
+        imprimir_libro(misLibros,d)
+    else:
+        print("Ingrese nuevamente.")
+    seleccionar_menu(evaluar_menu(mostrar_menu()))
