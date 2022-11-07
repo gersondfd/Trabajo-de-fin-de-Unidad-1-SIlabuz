@@ -32,6 +32,14 @@ def pokemon_habitat():
     lista_de_pokemon_habitat=[pokemon['name'] for pokemon in data['pokemon_species']]
     print(lista_de_pokemon_habitat)
 
+def pokemon_tipo():
+    url_Pokeapi_Json = 'https://pokeapi.co/api/v2/'
+    url_pokemon = url_Pokeapi_Json+"type/1/"
+    data_response = requests.get(url_pokemon)
+    data = data_response.json()
+    lista_de_pokemon_tipo=[pokemon['pokemon']['name'] for pokemon in data['pokemon']] 
+    print(lista_de_pokemon_tipo)
+
 def mostrar_menu():
     a=input('PokeApi\n\nMenú de Opciones\n\n1: Listar pokemons por generación.\n2: Listar pokemons por forma.\n3: Listar pokemons por habilidad.\n4: Listar pokemons por habitat.\n5: Listar pokemons por tipo.\n\nIngrese un número de la lista: ')
 mostrar_menu()
