@@ -7,3 +7,14 @@ def mostrar_menu():
 def imprimir_libro(listadelibros,libro):
     for i in range(0,len(listadelibros[libro])):
         print(listadelibros[0][i],':',listadelibros[libro][i])
+def evaluar_menu(a):
+    try:
+        b=int(a)
+        if 0<=b and b<=10:
+            return b
+        else:
+            print("\nError. Por favor, ingrese un numero de la lista.\n")
+            evaluar_menu(mostrar_menu())
+    except ValueError:
+        print("\nError. Por favor, ingrese un numero de la lista.\n")
+        evaluar_menu(mostrar_menu())
